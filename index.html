@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Small Lake Project</title>
+
+  <!-- bootstrap link -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+
+  <!-- google fonts link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- fontawesome link -->
+  <script src="https://kit.fontawesome.com/8de0c5dd9b.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js"></script>
+
+  <!-- css link -->
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <style>
+        body {
+            font-family: "Montserrat";
+        }
+        
+        h1 {
+            font-family: "Montserrat-Thin";
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.5;
+        }
+        
+        h2 {
+            font-family: "Montserrat";
+            font-weight: bold;
+            font-size: 3rem;
+            line-height: 1.5;
+        }
+        
+        h3 {
+            font-family: "Montserrat";
+            font-weight: bold;
+        }
+        
+        p {
+            color: #8f8f8f;
+        }
+        
+        /* Headings */
+        .section-heading {
+            font-size: 3rem;
+            line-height: 1.5;
+        }
+        
+        #title {
+            /* background-image: url("https://static.theprint.in/wp-content/uploads/2023/02/Untitled-design-6-3.jpg"); /* replace "path/to/image.jpg" with the path to your image file */
+            /* background-size: cover; */
+            /* background-position: center; */
+            /* background-attachment: fixed;  */
+            background-color: #3E54AC;
+            color: #03001C; /*adding white color to title section*/
+            /* width: 1520px; */
+            height: 750px;
+        }
+        
+        .container-fluid {
+            padding: 3% 15% 7%;
+        }
+        
+        /* Navigation bar */
+        .navbar {
+            padding: 0 0 4.5rem 0;
+        }
+        
+        .navbar-brand {
+            font-family: Ubuntu;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-item {
+            padding: 0 18px;
+        }
+        
+        .nav-link {
+            font-size: 1.2rem;
+            font-family: "Montserrat-Light"
+        }
+        
+        /* download button */
+        .download-button {
+            margin: 5% 3% 0 0;
+        }
+        
+        /* Title Image */
+        .above-title-div{
+            position: relative;
+        }
+        .title-image {
+            width: 80%;
+            height: 15rem;
+            /* transform: rotate(25deg); */
+            position: absolute;
+            right: 25%;
+        }
+        
+        /* Features Section */
+        #features {
+            padding: 7% 15%;
+            background-color: #E1EACD;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        #features h1 {
+            color: #B25068;
+        }
+        
+        #features1 {
+            padding: 7% 15%;
+            background-color: #D6E0F0;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        #features2 {
+            padding: 7% 15%;
+            background-color: #E1EACD;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        #features3 {
+            padding: 7% 15%;
+            background-color: #D6E0F0;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .feature-title {
+            font-family: "Montserrat";
+            font-weight: bold;
+        }
+        
+        .feature-box {
+            text-align: center;
+            padding: 5%;
+        }
+        
+        #pricing-sec {
+            padding: 80px;
+            text-align: center;
+        }
+        
+        .pricing-column {
+            padding: 5% 2%;
+        }
+        
+        .car-p {
+            width: 100%;
+            height: 40%;
+        }
+  
+  </style>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+  <!-- <script src="apply.js"></script> -->
+
+</head>
+
+<body>
+
+  <section class="colored-section" id="title">
+
+    <div class="container-fluid">
+
+
+      <!-- Nav Bar -->
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="">Small Lake Project</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#features">BDO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features1">Engineer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features2">Contractor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features3">Track</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+
+      <!-- Title -->
+      <div class="row">
+        <div class="col-md-6">
+          <h1>The Govenrment Fund Allocation and Tracking.</h1>
+          <!-- <button type="button" class="btn btn-dark btn-lg download-button"><i class="fa-brands fa-apple"></i> Download</button>
+          <button type="button" class="btn btn-light btn-lg  download-button"><i class="fa-brands fa-google-play"></i> Download</button> -->
+        </div>
+        <div class="col-md-6 above-title-div">
+          <img class="title-image" src="https://static.theprint.in/wp-content/uploads/2023/02/Untitled-design-6-3.jpg" alt="lake-mockup">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- BDO Section -->
+
+  <section class="white-section"id="features">
+
+
+    <h1>BDO Section</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- Receiving Proposal from gramPanchayat -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+              <h6>Receiving Proposal form Gram Panchayat</h6>
+              <label for="gramPanchayat">Gram Panchayat address:</label>
+              <input type="text" id="gramPanchayat" name="gramPanchayat"><br><br>
+              <label for="receivedProposal">Received proposal:</label>
+              <select id="receivedProposal" name="receivedProposal">
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+              </select><br><br>
+              <button onclick="receiveProposal()">Receive Proposal</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assign Verifaction Task to Engineers -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Assign Verification Task to Engineers</h6>
+            <label for="engineer">Engineer address:</label>
+            <input type="text" id="engineer" name="engineer"><br><br>
+            <label for="receivedProposal">Received proposal:</label>
+            <select id="receivedProposal1" name="receivedProposal1">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select><br><br>
+            <button onclick="assignVerificationTask()">Assign Engineer</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Approve Project by bdo -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Project Approval Process</h6>
+            <label for="approveproject">Approve Project if verified</label>
+            <select id="approveproject" name="approveproject">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select><br><br>
+            <button onclick="approveProject()">Approve Project</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assign the project contract to the contractor -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Assign Contract to a Contractor</h6>
+            <label for="contractor">Contractor Address: </label>
+            <input type="text" id="contractor" name="contractor"><br><br>
+            <button onclick="assignContractor()">Assign contractor</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Send some intial amount to start the working of project -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Send intial amount to start the project</h6>
+            <label for="contractor">Enter Initial Amount</label>
+            <input type="text" id="initialamt" name="initialamt"><br><br>
+            <label for="intialamt1">Confirm before sending money</label>
+            <select id="initialamt1" name="initialamt1">
+                <option value="true">Confirm</option>
+                <option value="false">Reject</option>
+            </select><br><br>
+            <button onclick="sendMoney()">Click here to send money</button>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Send amount of fund to the contractor -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Send final amount to the contractor</h6>
+            <label for="contractor">Enter Amount</label>
+            <input type="text" id="finalamt" name="finalamt"><br><br>
+            <label for="finalamt1">Confirm before sending money</label>
+            <select id="finalamt1" name="finalamt1">
+                <option value="true">Confirm</option>
+                <option value="false">Reject</option>
+            </select><br><br>
+            <button onclick="allocateFunds()">Click here to send money</button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculating estimation amount by engineers -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Calculate estimation amount</h6>
+            <label for="engineer1">Engineer address:</label>
+            <input type="text" id="engineer" name="engineer"><br><br>
+            <label for="receivedProposal">Received proposal:</label>
+            <select id="receivedProposal1" name="receivedProposal1">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select><br><br>
+            <button onclick="assignVerificationTask()">Assign Verification Task</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+  <!-- Engineer Section -->
+
+  <section class="white-section"id="features1">
+    <h1>Engineer Section</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- Verify the need of the project by engineers -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Verifying the need of project</h6>
+            <label for="verifyproject">Confirm need:</label>
+            <select id="verifyproject" name="verifyproject">
+                <option value="true">Confirm</option>
+                <option value="false">Reject</option>
+            </select><br><br>
+            <button onclick="verifyProject()">Verify Here</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculating estimation amount by engineers -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Calculate estimation amount</h6>
+            <label for="engineer1">Enter Estimation Amount:</label>
+            <input type="number" id="engineer1" name="engineer1"><br><br>
+            <label for="setest">Confirm Estimation Amount</label>
+            <select id="setest" name="setest">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select><br><br>
+            <button onclick="setestimationamt()">Set estimation amount for the project</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Updating the progress of the project if it is completed or not -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Update progress of project completion</h6>
+
+            <label for="updateprogress">Confirm or Deny the project completion</label>
+            <select id="updateprogress" name="updateprogress">
+                <option value="true">Confirm</option>
+                <option value="false">Deny</option>
+            </select><br><br>
+            <button onclick="updateProgress()">Update Progress</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+  <section class="white-section"id="features2">
+    <h1>Contractor Section</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- Start work if initial amount is received -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Start Working if initial amount is received</h6>
+            <label for="startw">Received intitial amount?</label>
+            <select id="startw" name="startw">
+                <option value="true">Confirm</option>
+                <option value="false">Deny</option>
+            </select><br><br>
+            <button onclick="startWorking()">Start Work</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Request final installment when project is completely build -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Request Final Installment when work is done</h6>
+            <label for="reqfinal">Project completed?</label>
+            <select id="reqfinal" name="reqfinal">
+                <option value="true">YES</option>
+                <option value="false">NO</option>
+            </select><br><br>
+            <button onclick="requestFinalInstallment()">Request Final Amount</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="white-section"id="features3">
+    <h1>Tracking Section</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+      <!-- check bdo -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Check Who is the Block Development Officer</h6>
+            <button onclick="readbdo()">GET BDO Address</button> <br>
+            <p id="databdo"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- check contractor -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Check Who is the Contractor involved in development</h6>
+            <button onclick="readcontractor()">GET Contractor Address</button> <br>
+            <div id="datacontractor"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Get the allocated funds to contractor -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Get the allocated funds</h6>
+            <button onclick="readfunds()">GET Contractor Address</button> <br>
+            <p id="datafunds"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Get the allocated funds to contractor -->
+      <div class="pricing-column col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <h6>Get the status of the project</h6>
+            <button onclick="readstatus()">GET STATUS</button> <br>
+            <p id="datastatus"></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+</body>
+
+<script>
+        
+            // Connect to the Ethereum network using Web3.js
+        const web3 = new ethers.providers.Web3Provider(window.ethereum);
+
+        // Define the contract address and ABI
+        const contractAddress = "contract_address";
+        
+        const contractABI = ["ABI"];
+
+        // Create a contract instance
+        const contract = new ethers.Contract(contractAddress, contractABI, web3.getSigner());
+
+        // Get the HTML elements
+        //const gramPanchayatInput = document.getElementById("gramPanchayat");
+        //const receivedProposalInput = document.getElementById("receivedProposal");
+
+        // Function to call the receiveProposal() function
+        async function receiveProposal() {
+            const gramPanchayat = document.getElementById("gramPanchayat").value;
+            const receivedProposal = document.getElementById("receivedProposal").value === "true";
+            console.log(gramPanchayat);
+            try {
+                // Call the receiveProposal() function from the smart contract
+                const bdo = await contract.bdo();
+                console.log(bdo);
+                //if (bdo === await web3.getSigner().getAddress()) {
+                    await contract.receiveProposal(gramPanchayat, receivedProposal);
+                    const abdo = await contract.gramPanchayat();
+                    console.log(abdo);
+                    alert("Proposal received successfully!");
+                // } else {
+                //     alert("Only the BDO can call this function!");
+                // }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        // Function to call the assignVerificationTask() function
+        async function assignVerificationTask() {
+
+            const engineer = document.getElementById("engineer").value;
+            //const receivedProposal1 = document.getElementById("receivedProposal1").value === "true";
+
+            try {
+                // Call the receiveProposal() function from the smart contract
+                const bdo = await contract.bdo();
+                if (bdo === await web3.getSigner().getAddress()) {
+                    await contract.assignVerificationTask(engineer);
+                    const eng = await contract.engineers();
+                    console.log(eng);
+                    alert("Engineer assigned successfully!");
+                } else {
+                    alert("Only the BDO can call this function!");
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+
+        // Function to call the verifyProject() function
+        async function verifyProject() {
+
+            //const engineer = document.getElementById("engineer").value;
+            const verifyproject = document.getElementById("verifyproject").value === "true";
+
+            try {
+                // Call the verifyProject() function from the smart contract
+                const engineer = await contract.engineers();
+                if (engineer === await web3.getSigner().getAddress()) {
+                    await contract.verifyProject(verifyproject);
+                    const eng = await contract.engineers();
+                    console.log(eng);
+                    alert("Verified project successfully!");
+                } else {
+                    alert("Only the Engineer can call this function!");
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        // Function to call the approveProject() function
+        async function approveProject() {
+            
+            //const engineer = document.getElementById("engineer").value;
+            const approveproject = document.getElementById("approveproject").value === "true";
+
+            try {
+                // Call the approveProject() function from the smart contract
+                const bdo = await contract.bdo();
+                if (bdo === await web3.getSigner().getAddress()) {
+                    await contract.approveProject(approveproject);
+                    const bd = await contract.bdo();
+                    console.log(bd);
+                    alert("Approved project successfully!");
+                } else {
+                    alert("Only the BDO can call this function!");
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+
+        // Function to call the setestimationamt() function
+        async function setestimationamt() {
+            
+            const engin = document.getElementById("engineer1").value;
+            const setest = document.getElementById("setest").value === "true";
+
+            try {
+                // Call the approveProject() function from the smart contract
+                const engineer = await contract.engineers();
+                if (engineer === await web3.getSigner().getAddress()) {
+                    await contract.setestimationamt(engin);
+                    const bdi = await contract.engineers();
+                    console.log(bdi);
+                    alert("Estimation amount set successfully!");
+                } else {
+                    alert("Only the Engineer can call this function!");
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        // Function to call the assignContractor() function
+        async function assignContractor() {
+            
+            const contractor = document.getElementById("contractor").value;
+
+            try {
+                // Call the approveProject() function from the smart contract
+                const bdo = await contract.bdo();
+                if (bdo === await web3.getSigner().getAddress()) {
+                    await contract.assignContractor(contractor);
+                    const cnt = await contract.contractor();
+                    console.log(cnt);
+                    alert("Contractor Assigned successfully!");
+                } else {
+                    alert("Only the BDO can call this function!");
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+        
+      
+        //Function to call the intialamt() function
+        async function sendMoney() {
+            console.log("hello");
+            const amti = document.getElementById("initialamt").value;
+            const chk = await contract.allocatedFunds();
+            console.log(chk);
+            console.log("bollo");
+            console.log(amti);
+            
+            //const addr = document.getElementById("address").value;
+
+            if (contract) {
+                try {
+                console.log("hmm");
+                const tx = await contract.initialamt({
+                    value: ethers.utils.parseEther(amti)
+    
+                });
+                console.log("Transaction hash:", tx.hash);
+                alert("Funds sent successfully");
+                } catch (e) {
+                console.log("Error sending funds:", e.message);
+                alert("Error sending funds");
+                }
+            } else {
+                alert("Contract is not initialized");
+            }
+        }
+
+
+        // Function to call the startWorking() function
+        async function startWorking() {
+
+
+            try {
+                // Call the startWorking() function from the smart contract
+                const contractor = await contract.contractor();
+                if (contractor === await web3.getSigner().getAddress()) {
+                    await contract.startWorking();
+                    const cnti = await contract.contractor();
+                    console.log(cnti);
+                    alert("Work Started successfully!");
+                } else {
+                    alert("Only the Contractor can call this function!");
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+
+        // Function to call the updateProgress() function
+        async function updateProgress() {
+            
+            //const contractor = document.getElementById("contractor").value;
+            //const setest = document.getElementById("setest").value === "true";
+
+            try {
+                // Call the updateProgress() function from the smart contract
+                const engineer = await contract.engineers();
+                if (engineer === await web3.getSigner().getAddress()) {
+                    await contract.updateProgress();
+                    const upd = await contract.engineers();
+                    console.log(upd);
+                    alert("Work Completed successfully!");
+                } else {
+                    alert("Only the Engineer can call this function!");
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+
+         // Function to call the requestFinalInstallment() function
+         async function requestFinalInstallment() {
+            
+            try {
+                // Call the requestFinalInstallment() function from the smart contract
+                const contractor = await contract.contractor();
+                if (contractor === await web3.getSigner().getAddress()) {
+                    await contract.requestFinalInstallment();
+                    const rfa = await contract.contractor();
+                    console.log(rfa);
+                    alert("Request sent successfully!");
+                } else {
+                    alert("Only the Contractor can call this function!");
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+
+        //Function to call the allocateFunds() function
+        async function allocateFunds() {
+            const amt = document.getElementById("finalamt").value;
+            if (contract) {
+                try {
+                const tx = await contract.allocateFunds({
+                    value: ethers.utils.parseEther(amt),
+    
+                });
+                console.log("Transaction hash:", tx.hash);
+                alert("Funds sent successfully");
+                } catch (e) {
+                console.log("Error sending funds:", e.message);
+                alert("Error sending funds");
+                }
+            } else {
+                alert("Contract is not initialized");
+            }
+        }
+
+        //Function to call the readbdo() function
+        async function readbdo() {
+            try {
+
+                  const bdo = await contract.getBDO();
+                  console.log(bdo);
+                  const addressElement = document.getElementById("databdo");
+                  addressElement.textContent = `BDO address: ${bdo}`;
+                  setTimeout(() => {
+                    addressElement.textContent = "";
+                  }, 7000);
+                  const rca = await contract.bdo();
+                  console.log(rca);
+                 
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        // Function to call the readcontractor() function
+        async function readcontractor() {
+            try {
+
+                  const projectCompleted = await contract.projectCompleted();
+                  if(!projectCompleted) {
+                    throw new Error("Project has not been completed yet");
+                  }
+
+                  const contractor = await contract.getContractor();
+                  console.log(contractor);
+                  const addressElement = document.getElementById("datacontractor");
+                  addressElement.textContent = `Contractor address: ${contractor}`;
+                  setTimeout(() => {
+                    addressElement.textContent = "";
+                  }, 7000);
+                  const rca = await contract.contractor();
+                  console.log(rca);
+                 
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        async function readfunds() {
+            try {
+
+                  const projectCompleted = await contract.projectCompleted();
+                  if(!projectCompleted) {
+                    throw new Error("Project has not been completed yet");
+                  }
+
+                  const funds = await contract.getAllocatedFunds();
+                  console.log(funds);
+                  const addressElement = document.getElementById("datafunds");
+                  addressElement.textContent = `Allocated Funds: ${funds/(10**18)} ethers`;
+                  setTimeout(() => {
+                    addressElement.textContent = "";
+                  }, 7000);
+                  const rca = await contract.allocatedFunds();
+                  console.log(rca);
+                 
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        //function to call getStatus function
+        async function readstatus() {
+            try {
+
+                  const status = await contract.getStatus();
+                  console.log(status);
+                  const addressElement = document.getElementById("datastatus");
+                  addressElement.textContent = `${status}`;
+                  setTimeout(() => {
+                    addressElement.textContent = "";
+                  }, 7000);
+                  //const rca = await contract.allocatedFunds();
+                  //console.log(rca);
+                 
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+</script>
+
+</html>
